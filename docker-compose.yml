@@ -1,5 +1,3 @@
-version: "3.9"
-
 # ═══════════════════════════════════════════════════════════════════════════
 #  FanVault – Docker Compose
 #  All services share a single MongoDB instance with separate databases.
