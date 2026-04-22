@@ -27,7 +27,7 @@ export default function HomePage() {
 
   useEffect(() => {
     productAPI.getProducts({ limit: 8, sortBy: 'rating.average', order: 'desc' })
-      .then(({ data }) => setFeatured(data.products))
+      .then(({ data }) => setFeatured(Array.isArray(data?.products) ? data.products : []))
       .catch(console.error)
       .finally(() => setLoading(false));
   }, []);

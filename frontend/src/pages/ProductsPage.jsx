@@ -45,8 +45,8 @@ export default function ProductsPage() {
         page,
         limit: 12,
       });
-      setProducts(data.products);
-      setPagination(data.pagination);
+      setProducts(Array.isArray(data?.products) ? data.products : []);
+      setPagination(data?.pagination || { total: 0, pages: 1, page: 1 });
     } catch (err) {
       console.error(err);
     } finally {

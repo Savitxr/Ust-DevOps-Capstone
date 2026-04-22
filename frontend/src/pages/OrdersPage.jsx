@@ -30,7 +30,10 @@ export default function OrdersPage() {
 
   useEffect(() => {
     orderAPI.getMyOrders({ page, limit: 10 })
-      .then(({ data }) => { setOrders(data.orders); setPagination(data.pagination); })
+      .then(({ data }) => {
+        setOrders(Array.isArray(data?.orders) ? data.orders : []);
+        setPagination(data?.pagination || {});
+      })
       .catch(console.error)
       .finally(() => setLoading(false));
   }, [page]);
@@ -67,7 +70,7 @@ export default function OrdersPage() {
                 </div>
                 <div className="order-card-body">
                   <div className="order-items-preview">
-                    {order.items.slice(0, 3).map((item, i) => (
+                    {(order.items || []).slice(0, 3).map((item, i) => (
                       <div key={i} className="order-item-thumb">
                         <img src={item.image || 'https://placehold.co/60x60/f4fdf6/2d6a4f?text=Item'} alt={item.name} />
                       </div>
