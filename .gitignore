@@ -1,6 +1,10 @@
 # Git – ignore all .env files (never commit secrets)
-# .env
-# *.env
+.env
+*.env
+.git
+.gitignore
+*.md
+
 
 # Node
 node_modules/
