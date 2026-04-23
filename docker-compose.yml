@@ -98,6 +98,7 @@ services:
       MONGO_URI: mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASS}@mongo:27017/order-db?authSource=admin
       JWT_SECRET: ${JWT_SECRET}
       EMAIL_SERVICE_URL: http://email-service:3005
+      INTERNAL_SECRET: ${INTERNAL_SECRET}
       CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost}
     depends_on:
       mongo:
@@ -117,13 +118,7 @@ services:
     env_file: ./email-service/.env
     environment:
       PORT: 3005
-      NODE_ENV: production
-      SMTP_HOST: ${SMTP_HOST}
-      SMTP_PORT: ${SMTP_PORT:-587}
-      SMTP_SECURE: ${SMTP_SECURE:-false}
-      SMTP_USER: ${SMTP_USER}
-      SMTP_PASS: ${SMTP_PASS}
-      SMTP_FROM: ${SMTP_FROM}
+      NODE_ENV: development
       INTERNAL_SECRET: ${INTERNAL_SECRET}
     networks:
       - fanvault-net
